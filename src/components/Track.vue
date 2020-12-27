@@ -114,6 +114,7 @@ export default class TrackComponent extends Vue {
       )
       return null
     }
+    if (!album.images[0]) { return './assets/default_cover.png' }
     return album.images[0].url
   }
 
