@@ -1,4 +1,3 @@
-import { scrobbleApiBase } from '../../config'
 import { ApiBase } from './ApiBase'
 
 export type SpotifyTokenData = {
@@ -23,7 +22,7 @@ export interface ScrobbleResponse {
 
 export class ScrobbleClient extends ApiBase {
   constructor() {
-    super(scrobbleApiBase)
+    super(process.env.VUE_APP_SCROBBLE_API)
   }
 
   async getSpotifyToken() {

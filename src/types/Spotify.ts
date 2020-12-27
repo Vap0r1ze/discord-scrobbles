@@ -1,4 +1,3 @@
-import { spotifyApiBase } from '../../config'
 import { ApiBase } from './ApiBase'
 import { ScrobbleClient } from './ScrobbleClient'
 
@@ -117,7 +116,7 @@ export type SpotifyClientResponse = Track | SeveralTracks | Artist | Album | Pla
 
 export class SpotifyClient extends ApiBase {
   constructor(scrobbleClient: ScrobbleClient) {
-    super(spotifyApiBase)
+    super(process.env.VUE_APP_SPOTIFY_API)
     scrobbleClient
       .getSpotifyToken()
       .then(data => {
