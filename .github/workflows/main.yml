@@ -18,6 +18,9 @@ jobs:
         run: |
           npm install
           npm run build
+        env:
+          VUE_APP_SCROBBLE_API: https://puss.vap.cx/scrobbles
+          VUE_APP_SPOTIFY_API: https://api.spotify.com/v1
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
