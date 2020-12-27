@@ -50,9 +50,7 @@ import {
 } from 'vue-property-decorator'
 import { mapState } from 'vuex'
 import Vibrant from 'node-vibrant'
-import {
-  Cache, StateAlbum, StateArtist, StateTrack,
-} from '@/store'
+import { State } from '@/store'
 import UserComponent from './User.vue'
 
 const ratioCorrection = 1.8
@@ -76,11 +74,11 @@ export default class TrackComponent extends Vue {
 
   @Prop(String) readonly note!: string
 
-  tracks!: Cache<StateTrack>
+  tracks!: State['tracks']
 
-  albums!: Cache<StateAlbum>
+  albums!: State['albums']
 
-  artists!: Cache<StateArtist>
+  artists!: State['artists']
 
   bg = ''
 

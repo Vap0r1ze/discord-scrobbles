@@ -31,7 +31,7 @@ import qs from 'qs'
 import UserComponent from '@/components/User.vue'
 import { Track } from '@/types/Spotify'
 import { ScrobbleResponse } from '@/types/ScrobbleClient'
-import { Cache, StateTrack } from '@/store'
+import { Cache, State } from '@/store'
 import { spotify, scrobbleClient } from '../api'
 
 const q = qs.parse(window.location.search.slice(1))
@@ -49,9 +49,9 @@ let cachedUsers: Cache<ScrobbleResponse> = {}
   computed: mapState(['tracks', 'users']),
 })
 export default class Home extends Vue {
-  tracks!: Cache<StateTrack>
+  tracks!: State['tracks']
 
-  users!: Cache<ScrobbleResponse>
+  users!: State['users']
 
   userIds: string[] = []
 

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import localforage from 'localforage'
 import { Image, Track } from '@/types/Spotify'
-import { User } from '@/types/ScrobbleClient'
+import { ScrobbleResponse } from '@/types/ScrobbleClient'
 
 Vue.use(Vuex)
 
@@ -35,7 +35,8 @@ export interface State {
   tracks: Cache<StateTrack>;
   albums: Cache<StateAlbum>;
   artists: Cache<StateArtist>;
-  users: Cache<User>;
+  users: Cache<ScrobbleResponse>;
+  openHistories: Cache<boolean>;
   localforageEnabled: boolean;
 }
 
@@ -46,6 +47,7 @@ export default new Vuex.Store<State>({
     albums: {},
     artists: {},
     users: {},
+    openHistories: {},
     localforageEnabled: true,
   },
   mutations: {

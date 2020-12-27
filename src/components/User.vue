@@ -58,10 +58,8 @@ import { formatDistanceStrict } from 'date-fns'
 import { mapState } from 'vuex'
 import qs from 'qs'
 import TrackComponent from '@/components/Track.vue'
-import {
-  Cache, StateAlbum, StateArtist, StateTrack,
-} from '@/store'
-import { Scrobble, ScrobbleResponse, User } from '@/types/ScrobbleClient'
+import { State } from '@/store'
+import { Scrobble, User } from '@/types/ScrobbleClient'
 // import { spotify, scrobbleClient } from '../api'
 
 interface HistoryTrackEntry {
@@ -101,11 +99,13 @@ export default class UserComponent extends Vue {
 
   nowDate!: number
 
-  tracks!: Cache<StateTrack>
+  tracks!: State['tracks']
 
-  albums!: Cache<StateAlbum>
+  albums!: State['albums']
 
-  artists!: Cache<StateArtist>
+  artists!: State['artists']
+
+  users!: State['users']
 
   users!: Cache<ScrobbleResponse>
 
