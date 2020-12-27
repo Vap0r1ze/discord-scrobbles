@@ -107,8 +107,6 @@ export default class UserComponent extends Vue {
 
   users!: State['users']
 
-  users!: Cache<ScrobbleResponse>
-
   showHistory = false
 
   openSkips = {}
