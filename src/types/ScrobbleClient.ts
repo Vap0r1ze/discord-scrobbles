@@ -4,8 +4,10 @@ export type SpotifyTokenData = {
   token: string;
   type: string;
 }
+
+// `Scrobble['endTime'] = null` implies that this scrobble is currently active
 export interface Scrobble {
-  id: string;
+  id: string; // spotify track id
   startTime: number;
   endTime: number | null;
 }
