@@ -120,9 +120,9 @@ export default class Home extends Vue {
           this.$store.dispatch('updateUser', { userId, data })
         })
         this.userIds = userIds
-        this.$store.dispatch('reinitUsers')
         cachedTracks = []
         cachedUsers = {}
+        this.sortUsers()
       })
       .catch(error => {
         console.error(error)
@@ -246,9 +246,6 @@ export default class Home extends Vue {
         this.ready = true
         this.dataInterval()
       })
-    this.$store.subscribe(mutation => {
-      if (mutation.type === 'reinitUsers') this.sortUsers()
-    })
   }
 }
 </script>

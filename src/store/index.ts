@@ -52,22 +52,19 @@ export default new Vuex.Store<State>({
   },
   mutations: {
     saveTrack(state, { id, track }: { id: string; track: StateTrack }) {
-      state.tracks[id] = track
+      Vue.set(state.tracks, id, track)
     },
     saveAlbum(state, { id, album }: { id: string; album: StateAlbum }) {
-      state.albums[id] = album
+      Vue.set(state.albums, id, album)
     },
     saveArtist(state, { id, artist }: { id: string; artist: StateArtist }) {
-      state.artists[id] = artist
+      Vue.set(state.artists, id, artist)
     },
     setNowDate(state, date) {
       state.nowDate = date
     },
-    updateUser(state, { userId, data }) {
-      state.users[userId] = { ...state.users[userId], ...data }
-    },
-    reinitUsers(state) {
-      state.users = { ...state.users }
+    updateUser(state, { userId, data }: { userId: string; data: ScrobbleResponse }) {
+      Vue.set(state.users, userId, { ...state.users[userId], ...data })
     },
     disableLocalforage(state) {
       state.localforageEnabled = false
@@ -136,7 +133,7 @@ export default new Vuex.Store<State>({
         await localforage.setItem('albums', JSON.stringify(state.albums))
       }
     },
-    updateUser({ commit }, { userId, data }) {
+    updateUser({ commit }, { userId, data }: { userId: string; data: ScrobbleResponse }) {
       commit('updateUser', { userId, data })
     },
     reinitUsers({ commit }) {
