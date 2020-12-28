@@ -15,11 +15,15 @@ export interface Paging<T> {
   total: number;
 }
 
-export interface Image {
+/**
+ * Apparently its possible for an album to not have a cover image lol
+ * E.g: https://open.spotify.com/album/0fHB3Fl84QT2cjwDTEKXon (https://i.imgur.com/SEvnvpI.png)
+ * */
+export type Image = {
   height?: number;
   url: string;
   width: number;
-}
+} | undefined
 export interface ArtistSimple {
   external_urls: Record<string, string>;
   href: string;

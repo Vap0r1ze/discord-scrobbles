@@ -17,14 +17,10 @@ export interface StateTrack {
   duration: number;
 }
 
-/**
- * Apparently its possible for an album to not have a cover image lol
- * E.g: https://open.spotify.com/album/0fHB3Fl84QT2cjwDTEKXon (https://i.imgur.com/SEvnvpI.png)
- * */
 export interface StateAlbum {
   id: string;
   name: string;
-  images: Array<Image | undefined>;
+  images: Image[];
 }
 export interface StateArtist {
   id: string;
