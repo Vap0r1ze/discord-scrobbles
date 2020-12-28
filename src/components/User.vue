@@ -92,7 +92,7 @@ const defaultAvatars = [
   components: {
     Track: TrackComponent,
   },
-  computed: mapState(['nowDate', 'tracks', 'albums', 'artists', 'users']),
+  computed: mapState(['nowDate', 'tracks', 'albums', 'artists', 'users', 'openHistories']),
 })
 export default class UserComponent extends Vue {
   @Prop(String) readonly userId!: string
@@ -107,7 +107,7 @@ export default class UserComponent extends Vue {
 
   users!: State['users']
 
-  showHistory = false
+  openHistories!: State['openHistories']
 
   openSkips = {}
 
@@ -202,6 +202,10 @@ export default class UserComponent extends Vue {
     return this.user && this.user.discriminator !== '0000'
   }
 
+  get showHistory() {
+    return Boolean(this.openHistories[this.userId])
+  }
+
   formatTimeDiff(diff: number) {
     return diff < 5000
       ? 'just now'
@@ -223,7 +227,10 @@ export default class UserComponent extends Vue {
   }
 
   toggleHistory() {
-    this.showHistory = !this.showHistory
+    this.$store.dispatch('setHistoryState', {
+      userId: this.userId,
+      open: !this.openHistories[this.userId],
+    })
   }
 
   toggleSkip() {

@@ -69,6 +69,9 @@ export default new Vuex.Store<State>({
     disableLocalforage(state) {
       state.localforageEnabled = false
     },
+    setHistoryState(state, { userId, open }: { userId: string; open: boolean }) {
+      Vue.set(state.openHistories, userId, open)
+    },
   },
   actions: {
     updateNow({ commit }) {
@@ -136,8 +139,8 @@ export default new Vuex.Store<State>({
     updateUser({ commit }, { userId, data }: { userId: string; data: ScrobbleResponse }) {
       commit('updateUser', { userId, data })
     },
-    reinitUsers({ commit }) {
-      commit('reinitUsers')
+    setHistoryState({ commit }, { userId, open }: { userId: string; open: boolean }) {
+      commit('setHistoryState', { userId, open })
     },
   },
 })
